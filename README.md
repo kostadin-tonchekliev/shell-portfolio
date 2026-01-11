@@ -2,6 +2,8 @@
 
 An interactive terminal-style portfolio website where visitors can explore your profile, skills, projects, and experience through a command-line interface.
 
+A demo of the website can be found here: [shell-portfolio-three.vercel.app](https://shell-portfolio-three.vercel.app)
+
 ## Screenshots
 
 ![Full Page Screenshot](docs/screenshots/full-page.png)
