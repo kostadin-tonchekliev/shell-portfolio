@@ -2,6 +2,21 @@
 
 An interactive terminal-style portfolio website where visitors can explore your profile, skills, projects, and experience through a command-line interface.
 
+## Screenshots
+
+![Full Page Screenshot](docs/screenshots/full-page.png)
+
+<details>
+<summary>More Screenshots</summary>
+
+### Terminal Commands
+![Terminal Commands](docs/screenshots/terminal-commands.png)
+
+### Skills Widget
+![Skills Widget](docs/screenshots/skills-widget.png)
+
+</details>
+
 ## Features
 
 - **Personal Profile Header** — Displays your name, profile picture, title, and social links
@@ -78,6 +93,8 @@ npm run dev
 │   ├── skills.json       # Technical skills data
 │   ├── projects.json     # Featured projects data
 │   └── experience.json   # Work experience data
+├── docs/
+│   └── screenshots/      # README screenshots
 ├── public/
 │   └── avatar.svg        # Your profile picture (default placeholder included)
 └── lib/
