@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Background -->
+  <circle cx="100" cy="100" r="100" fill="#1a1a1a"/>
+  
+  <!-- Decorative ring -->
+  <circle cx="100" cy="100" r="95" stroke="#e63946" stroke-width="2" stroke-opacity="0.3" fill="none"/>
+  
+  <!-- Head -->
+  <circle cx="100" cy="75" r="35" fill="#2a2a2a" stroke="#e63946" stroke-width="2"/>
+  
+  <!-- Body/shoulders -->
+  <path d="M40 170 C40 130, 70 110, 100 110 C130 110, 160 130, 160 170" fill="#2a2a2a" stroke="#e63946" stroke-width="2"/>
+  
+  <!-- Terminal prompt decoration -->
+  <text x="100" y="85" text-anchor="middle" fill="#e63946" font-family="monospace" font-size="24" font-weight="bold">&gt;_</text>
+  
+  <!-- Code brackets decoration on shoulders -->
+  <text x="60" y="150" fill="#4ade80" font-family="monospace" font-size="20" opacity="0.8">{</text>
+  <text x="130" y="150" fill="#4ade80" font-family="monospace" font-size="20" opacity="0.8">}</text>
+</svg>

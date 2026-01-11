@@ -1,0 +1,23 @@
+{
+  "name": "John Doe",
+  "title": "DevOps Engineer",
+  "tagline": "Cloud Architect | Automation Enthusiast",
+  "avatar": "/avatar.svg",
+  "email": "hello@devops-engineer.dev",
+  "links": {
+    "linkedin": "https://linkedin.com/",
+    "github": "https://github.com/",
+    "twitter": "https://twitter.com/"
+  },
+  "about": {
+    "intro": "Hey there! 👋 I'm a passionate DevOps Engineer with a love for automation, infrastructure as code, and building reliable systems.",
+    "description": "I specialize in designing and implementing CI/CD pipelines, managing cloud infrastructure, and containerizing applications. My goal is to bridge the gap between development and operations, making deployments smooth and systems resilient.",
+    "philosophy": "Automate everything that can be automated, monitor what can't.",
+    "currentFocus": [
+      "Kubernetes orchestration at scale",
+      "GitOps and infrastructure automation",
+      "Observability and monitoring solutions",
+      "Security-first DevOps practices"
+    ]
+  }
+}

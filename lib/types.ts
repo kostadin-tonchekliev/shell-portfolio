@@ -31,3 +31,26 @@ export interface Position {
 export interface ExperienceData {
   positions: Position[];
 }
+
+export interface ProfileLinks {
+  linkedin: string;
+  github: string;
+  twitter: string;
+}
+
+export interface ProfileAbout {
+  intro: string;
+  description: string;
+  philosophy: string;
+  currentFocus: string[];
+}
+
+export interface ProfileData {
+  name: string;
+  title: string;
+  tagline: string;
+  avatar: string;
+  email: string;
+  links: ProfileLinks;
+  about: ProfileAbout;
+}

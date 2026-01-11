@@ -2,11 +2,13 @@ import React from 'react';
 import skillsData from '@/data/skills.json';
 import projectsData from '@/data/projects.json';
 import experienceData from '@/data/experience.json';
-import type { SkillsData, ProjectsData, ExperienceData } from './types';
+import profileData from '@/data/profile.json';
+import type { SkillsData, ProjectsData, ExperienceData, ProfileData } from './types';
 
 const skills = skillsData as SkillsData;
 const projects = projectsData as ProjectsData;
 const experience = experienceData as ExperienceData;
+const profile = profileData as ProfileData;
 
 export interface Command {
   description: string;
@@ -48,29 +50,20 @@ export const COMMANDS: Record<string, Command> = {
     execute: () => (
       <div className="space-y-3">
         <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-        <div className="text-accent font-semibold">  About Me</div>
+        <div className="text-accent font-semibold">  About {profile.name}</div>
         <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-        <div className="mt-2">
-          Hey there! 👋 I&apos;m a passionate <span className="text-accent">DevOps Engineer</span> with a love for
-          automation, infrastructure as code, and building reliable systems.
-        </div>
-        <div>
-          I specialize in designing and implementing CI/CD pipelines, managing
-          cloud infrastructure, and containerizing applications. My goal is to
-          bridge the gap between development and operations, making deployments
-          smooth and systems resilient.
-        </div>
+        <div className="mt-2">{profile.about.intro}</div>
+        <div>{profile.about.description}</div>
         <div className="mt-3">
           <span className="text-text-muted">Philosophy:</span>
-          <div className="ml-2">&ldquo;Automate everything that can be automated, monitor what can&apos;t.&rdquo;</div>
+          <div className="ml-2">&ldquo;{profile.about.philosophy}&rdquo;</div>
         </div>
         <div className="mt-2">
           <span className="text-text-muted">Current Focus:</span>
           <div className="ml-2 space-y-1">
-            <div>• Kubernetes orchestration at scale</div>
-            <div>• GitOps and infrastructure automation</div>
-            <div>• Observability and monitoring solutions</div>
-            <div>• Security-first DevOps practices</div>
+            {profile.about.currentFocus.map((focus) => (
+              <div key={focus}>• {focus}</div>
+            ))}
           </div>
         </div>
         <div className="text-prompt-cyan mt-3">Type &apos;skills&apos; to see my technical expertise!</div>
@@ -163,19 +156,19 @@ export const COMMANDS: Record<string, Command> = {
         <div className="space-y-2 mt-3 ml-2">
           <div>
             <span className="text-accent">📧 Email:</span>    
-            <a href="mailto:hello@devops-engineer.dev" className="output-link ml-2">hello@devops-engineer.dev</a>
+            <a href={`mailto:${profile.email}`} className="output-link ml-2">{profile.email}</a>
           </div>
           <div>
             <span className="text-accent">💼 LinkedIn:</span> 
-            <a href="https://linkedin.com/in/devops-engineer" target="_blank" rel="noopener noreferrer" className="output-link ml-2">linkedin.com/in/devops-engineer</a>
+            <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" className="output-link ml-2">{profile.links.linkedin.replace('https://', '')}</a>
           </div>
           <div>
             <span className="text-accent">🐙 GitHub:</span>   
-            <a href="https://github.com/devops-engineer" target="_blank" rel="noopener noreferrer" className="output-link ml-2">github.com/devops-engineer</a>
+            <a href={profile.links.github} target="_blank" rel="noopener noreferrer" className="output-link ml-2">{profile.links.github.replace('https://', '')}</a>
           </div>
           <div>
             <span className="text-accent">🐦 Twitter:</span>  
-            <a href="https://twitter.com/devops_engineer" target="_blank" rel="noopener noreferrer" className="output-link ml-2">@devops_engineer</a>
+            <a href={profile.links.twitter} target="_blank" rel="noopener noreferrer" className="output-link ml-2">@{profile.links.twitter.split('/').pop()}</a>
           </div>
         </div>
         <div className="text-prompt-green mt-3">Looking forward to hearing from you! 🚀</div>
@@ -216,10 +209,10 @@ export const COMMANDS: Record<string, Command> = {
     \\___)=(___/`}
         </pre>
         <div className="space-y-1 text-sm">
-          <div><span className="text-accent font-semibold">visitor</span><span>@portfolio</span></div>
+          <div><span className="text-accent font-semibold">visitor</span><span>@{profile.name.toLowerCase().replace(/\s+/g, '-')}</span></div>
           <div className="text-text-muted">------------------</div>
           <div><span className="text-accent">OS:</span> Portfolio OS 1.0.0</div>
-          <div><span className="text-accent">Host:</span> DevOps Engineer Portfolio</div>
+          <div><span className="text-accent">Host:</span> {profile.name}&apos;s Portfolio</div>
           <div><span className="text-accent">Kernel:</span> Next.js 2024</div>
           <div><span className="text-accent">Uptime:</span> Always online ☁️</div>
           <div><span className="text-accent">Shell:</span> portfolio-bash 5.0</div>
