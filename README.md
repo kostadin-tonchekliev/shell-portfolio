@@ -1,4 +1,4 @@
-# Terminal Portfolio
+# Shell Portfolio
 
 An interactive terminal-style portfolio website where visitors can explore your profile, skills, projects, and experience through a command-line interface.
 
