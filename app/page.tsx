@@ -3,6 +3,7 @@
 import { useState, useCallback } from 'react';
 import Terminal from '@/components/Terminal';
 import Sidebar from '@/components/Sidebar';
+import SkillsWidget from '@/components/SkillsWidget';
 
 export default function Home() {
   const [externalCommand, setExternalCommand] = useState<string | undefined>();
@@ -39,15 +40,20 @@ export default function Home() {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 flex flex-col md:flex-row gap-8 p-8 max-w-[1400px] mx-auto w-full">
-          <Sidebar onCommandClick={handleCommandClick} />
-          <section className="flex-1 flex items-start">
+        <main className="flex-1 flex flex-col xl:flex-row xl:items-stretch gap-6 p-6 max-w-[1800px] mx-auto w-full">
+          <div className="xl:flex-1 xl:min-w-0">
+            <Sidebar onCommandClick={handleCommandClick} />
+          </div>
+          <section className="xl:flex-[2] xl:min-w-0 flex">
             <Terminal 
               key={commandKey}
               externalCommand={externalCommand} 
               onCommandExecuted={handleCommandExecuted}
             />
           </section>
+          <div className="hidden xl:flex xl:flex-1 xl:min-w-0">
+            <SkillsWidget />
+          </div>
         </main>
       </div>
     </div>

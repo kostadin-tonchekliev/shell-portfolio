@@ -9,37 +9,53 @@ interface SidebarProps {
 
 export default function Sidebar({ onCommandClick }: SidebarProps) {
   return (
-    <aside className="w-[200px] flex-shrink-0 p-6 bg-bg-secondary rounded-xl border border-bg-tertiary h-fit sticky top-8">
-      <div className="mb-6">
-        <h2 className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-4">
-          Commands
-        </h2>
-        <ul className="space-y-1">
-          {MAIN_COMMANDS.map((command) => (
-            <CommandItem 
-              key={command} 
-              command={command} 
-              onClick={() => onCommandClick(command)}
-            />
-          ))}
-        </ul>
+    <aside className="w-full bg-bg-secondary rounded-xl border border-bg-tertiary shadow-[0_10px_40px_rgba(0,0,0,0.4),0_0_20px_rgba(230,57,70,0.05)] h-fit sticky top-8 overflow-hidden">
+      {/* Title Bar */}
+      <div className="flex items-center justify-between px-3 py-2 bg-bg-titlebar border-b border-bg-tertiary select-none">
+        <div className="flex gap-1.5">
+          <span className="w-2.5 h-2.5 rounded-full bg-btn-close opacity-80" />
+          <span className="w-2.5 h-2.5 rounded-full bg-btn-minimize opacity-80" />
+          <span className="w-2.5 h-2.5 rounded-full bg-btn-maximize opacity-80" />
+        </div>
+        <div className="text-xs text-text-muted font-medium tracking-wide">
+          commands — menu
+        </div>
+        <div className="w-[40px]" />
       </div>
 
-      <div className="h-px bg-bg-tertiary my-6" />
+      {/* Content */}
+      <div className="p-5">
+        <div className="mb-5">
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-3">
+            Commands
+          </h2>
+          <ul className="space-y-1">
+            {MAIN_COMMANDS.map((command) => (
+              <CommandItem 
+                key={command} 
+                command={command} 
+                onClick={() => onCommandClick(command)}
+              />
+            ))}
+          </ul>
+        </div>
 
-      <div>
-        <h2 className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-4">
-          Easter Eggs
-        </h2>
-        <ul className="space-y-1">
-          {EASTER_EGG_COMMANDS.map((command) => (
-            <CommandItem 
-              key={command} 
-              command={command} 
-              onClick={() => onCommandClick(command)}
-            />
-          ))}
-        </ul>
+        <div className="h-px bg-bg-tertiary my-5" />
+
+        <div>
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-text-muted mb-3">
+            Easter Eggs
+          </h2>
+          <ul className="space-y-1">
+            {EASTER_EGG_COMMANDS.map((command) => (
+              <CommandItem 
+                key={command} 
+                command={command} 
+                onClick={() => onCommandClick(command)}
+              />
+            ))}
+          </ul>
+        </div>
       </div>
     </aside>
   );
