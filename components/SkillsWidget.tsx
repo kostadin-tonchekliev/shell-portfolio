@@ -1,64 +1,32 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import skillsData from '@/data/skills.json';
+import type { SkillsData } from '@/lib/types';
 
-interface SkillCategory {
-  icon: string;
-  name: string;
-  skills: string[];
-  color: string;
-}
+const skills = skillsData as SkillsData;
 
-const SKILL_CATEGORIES: SkillCategory[] = [
-  {
-    icon: '☁️',
-    name: 'Cloud',
-    skills: ['AWS', 'GCP', 'Azure'],
-    color: 'var(--prompt-cyan)',
-  },
-  {
-    icon: '🐳',
-    name: 'Containers',
-    skills: ['Docker', 'Kubernetes', 'Helm'],
-    color: 'var(--prompt-cyan)',
-  },
-  {
-    icon: '🔄',
-    name: 'CI/CD',
-    skills: ['GitHub Actions', 'GitLab CI', 'ArgoCD'],
-    color: 'var(--prompt-green)',
-  },
-  {
-    icon: '📦',
-    name: 'IaC',
-    skills: ['Terraform', 'Pulumi', 'Ansible'],
-    color: 'var(--prompt-yellow)',
-  },
-  {
-    icon: '📊',
-    name: 'Observability',
-    skills: ['Prometheus', 'Grafana', 'ELK'],
-    color: 'var(--accent)',
-  },
-  {
-    icon: '💻',
-    name: 'Languages',
-    skills: ['Python', 'Bash', 'Go'],
-    color: 'var(--prompt-green)',
-  },
-];
+// Color mapping from JSON color names to CSS variable values
+const colorVarMap: Record<string, string> = {
+  'accent': 'var(--accent)',
+  'prompt-green': 'var(--prompt-green)',
+  'prompt-cyan': 'var(--prompt-cyan)',
+  'prompt-yellow': 'var(--prompt-yellow)',
+};
 
 export default function SkillsWidget() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [uptime, setUptime] = useState('0:00:00');
 
+  const categories = skills.categories;
+
   // Cycle through skills for the highlight effect
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % SKILL_CATEGORIES.length);
+      setActiveIndex((prev) => (prev + 1) % categories.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [categories.length]);
 
   // Uptime counter
   useEffect(() => {
@@ -75,8 +43,10 @@ export default function SkillsWidget() {
     return () => clearInterval(interval);
   }, []);
 
+  const totalSkills = categories.reduce((acc, cat) => acc + cat.skills.length, 0);
+
   return (
-    <div className="skills-widget w-full h-full bg-bg-secondary rounded-xl overflow-hidden border border-bg-tertiary shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_40px_rgba(230,57,70,0.1)] flex flex-col min-h-[500px]">
+    <div className="skills-widget w-full h-[700px] bg-bg-secondary rounded-xl overflow-hidden border border-bg-tertiary shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_40px_rgba(230,57,70,0.1)] flex flex-col">
       {/* Title Bar */}
       <div className="flex items-center justify-between px-3 py-2 bg-bg-titlebar border-b border-bg-tertiary select-none">
         <div className="flex gap-1.5">
@@ -98,13 +68,13 @@ export default function SkillsWidget() {
         </div>
         <div className="flex items-center justify-between text-xs mt-1">
           <span className="text-text-muted">SKILLS LOADED</span>
-          <span className="text-accent font-mono">{SKILL_CATEGORIES.reduce((acc, cat) => acc + cat.skills.length, 0)}</span>
+          <span className="text-accent font-mono">{totalSkills}</span>
         </div>
       </div>
 
       {/* Skills Grid */}
       <div className="p-3 space-y-2 flex-1 overflow-y-auto">
-        {SKILL_CATEGORIES.map((category, index) => (
+        {categories.map((category, index) => (
           <div
             key={category.name}
             className={`skill-category p-2.5 rounded-lg border transition-all duration-500 ${
@@ -117,9 +87,9 @@ export default function SkillsWidget() {
               <span className="text-sm">{category.icon}</span>
               <span 
                 className="text-xs font-semibold uppercase tracking-wider"
-                style={{ color: category.color }}
+                style={{ color: colorVarMap[category.color] || 'var(--accent)' }}
               >
-                {category.name}
+                {category.shortName}
               </span>
             </div>
             <div className="flex flex-wrap gap-1">

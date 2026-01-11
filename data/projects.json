@@ -1,0 +1,28 @@
+{
+  "projects": [
+    {
+      "icon": "🚀",
+      "title": "K8s Cluster Automation",
+      "description": "Fully automated Kubernetes cluster provisioning with Terraform and Ansible. Includes GitOps workflow with ArgoCD.",
+      "technologies": ["Terraform", "Kubernetes", "ArgoCD", "Helm", "AWS"]
+    },
+    {
+      "icon": "📊",
+      "title": "Observability Platform",
+      "description": "Complete monitoring stack with custom dashboards, alerting, and log aggregation for microservices architecture.",
+      "technologies": ["Prometheus", "Grafana", "Loki", "AlertManager"]
+    },
+    {
+      "icon": "🔄",
+      "title": "CI/CD Pipeline Framework",
+      "description": "Reusable pipeline templates for multi-language projects with security scanning and automated deployments.",
+      "technologies": ["GitHub Actions", "Trivy", "SonarQube", "Docker"]
+    },
+    {
+      "icon": "🔐",
+      "title": "Secrets Management System",
+      "description": "Centralized secrets management with automatic rotation and audit logging across multiple environments.",
+      "technologies": ["HashiCorp Vault", "Kubernetes", "External Secrets"]
+    }
+  ]
+}

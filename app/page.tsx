@@ -40,18 +40,18 @@ export default function Home() {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 flex flex-col xl:flex-row xl:items-stretch gap-6 p-6 max-w-[1800px] mx-auto w-full">
+        <main className="flex-1 flex flex-col xl:flex-row xl:items-start gap-6 p-6 max-w-[1800px] mx-auto w-full">
           <div className="xl:flex-1 xl:min-w-0">
             <Sidebar onCommandClick={handleCommandClick} />
           </div>
-          <section className="xl:flex-[2] xl:min-w-0 flex">
+          <section className="xl:flex-[2] xl:min-w-0">
             <Terminal 
               key={commandKey}
               externalCommand={externalCommand} 
               onCommandExecuted={handleCommandExecuted}
             />
           </section>
-          <div className="hidden xl:flex xl:flex-1 xl:min-w-0">
+          <div className="hidden xl:block xl:flex-1 xl:min-w-0">
             <SkillsWidget />
           </div>
         </main>

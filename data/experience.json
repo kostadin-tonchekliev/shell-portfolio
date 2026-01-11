@@ -1,0 +1,22 @@
+{
+  "positions": [
+    {
+      "title": "Senior DevOps Engineer",
+      "company": "TechCorp Inc.",
+      "period": "2022 - Present",
+      "description": "Leading infrastructure automation initiatives, managing Kubernetes clusters, and implementing GitOps practices across the organization."
+    },
+    {
+      "title": "DevOps Engineer",
+      "company": "CloudScale Solutions",
+      "period": "2020 - 2022",
+      "description": "Built and maintained CI/CD pipelines, migrated legacy infrastructure to containerized workloads, and reduced deployment time by 70%."
+    },
+    {
+      "title": "Systems Administrator",
+      "company": "StartupXYZ",
+      "period": "2018 - 2020",
+      "description": "Managed Linux servers, implemented monitoring solutions, and began the journey into infrastructure automation."
+    }
+  ]
+}

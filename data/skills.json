@@ -1,0 +1,60 @@
+{
+  "categories": [
+    {
+      "icon": "☁️",
+      "name": "Cloud Platforms",
+      "shortName": "Cloud",
+      "color": "prompt-cyan",
+      "skills": ["AWS", "Google Cloud", "Azure", "DigitalOcean"]
+    },
+    {
+      "icon": "🐳",
+      "name": "Containers & Orchestration",
+      "shortName": "Containers",
+      "color": "prompt-cyan",
+      "skills": ["Docker", "Kubernetes", "Helm"]
+    },
+    {
+      "icon": "🔄",
+      "name": "CI/CD",
+      "shortName": "CI/CD",
+      "color": "prompt-green",
+      "skills": ["Jenkins", "GitHub Actions", "GitLab CI", "ArgoCD", "CircleCI"]
+    },
+    {
+      "icon": "📦",
+      "name": "Infrastructure as Code",
+      "shortName": "IaC",
+      "color": "prompt-yellow",
+      "skills": ["Terraform", "Pulumi", "CloudFormation", "Ansible"]
+    },
+    {
+      "icon": "📊",
+      "name": "Monitoring & Observability",
+      "shortName": "Observability",
+      "color": "accent",
+      "skills": ["Prometheus", "Grafana", "ELK Stack", "Datadog", "New Relic"]
+    },
+    {
+      "icon": "💻",
+      "name": "Scripting & Programming",
+      "shortName": "Languages",
+      "color": "prompt-green",
+      "skills": ["Python", "Bash", "Go", "JavaScript", "YAML"]
+    },
+    {
+      "icon": "🔒",
+      "name": "Security",
+      "shortName": "Security",
+      "color": "accent",
+      "skills": ["Vault", "SOPS", "Trivy", "Falco", "OPA"]
+    },
+    {
+      "icon": "🗄️",
+      "name": "Databases",
+      "shortName": "Databases",
+      "color": "prompt-cyan",
+      "skills": ["PostgreSQL", "MySQL", "MongoDB", "Redis"]
+    }
+  ]
+}

@@ -1,9 +1,25 @@
 import React from 'react';
+import skillsData from '@/data/skills.json';
+import projectsData from '@/data/projects.json';
+import experienceData from '@/data/experience.json';
+import type { SkillsData, ProjectsData, ExperienceData } from './types';
+
+const skills = skillsData as SkillsData;
+const projects = projectsData as ProjectsData;
+const experience = experienceData as ExperienceData;
 
 export interface Command {
   description: string;
   execute: (args?: string[]) => React.ReactNode;
 }
+
+// Color mapping for Tailwind classes
+const colorMap: Record<string, string> = {
+  'accent': 'text-accent',
+  'prompt-green': 'text-prompt-green',
+  'prompt-cyan': 'text-prompt-cyan',
+  'prompt-yellow': 'text-prompt-yellow',
+};
 
 export const COMMANDS: Record<string, Command> = {
   help: {
@@ -70,38 +86,14 @@ export const COMMANDS: Record<string, Command> = {
         <div className="text-accent font-semibold">  Technical Skills</div>
         <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
         <div className="space-y-3 mt-2">
-          <div>
-            <span className="text-accent font-semibold">☁️  Cloud Platforms:</span>
-            <div className="ml-4">AWS, Google Cloud, Azure, DigitalOcean</div>
-          </div>
-          <div>
-            <span className="text-accent font-semibold">🐳  Containers & Orchestration:</span>
-            <div className="ml-4">Docker, Kubernetes, Helm, Docker Compose</div>
-          </div>
-          <div>
-            <span className="text-accent font-semibold">🔄  CI/CD:</span>
-            <div className="ml-4">Jenkins, GitHub Actions, GitLab CI, ArgoCD, CircleCI</div>
-          </div>
-          <div>
-            <span className="text-accent font-semibold">📦  Infrastructure as Code:</span>
-            <div className="ml-4">Terraform, Pulumi, CloudFormation, Ansible</div>
-          </div>
-          <div>
-            <span className="text-accent font-semibold">📊  Monitoring & Observability:</span>
-            <div className="ml-4">Prometheus, Grafana, ELK Stack, Datadog, New Relic</div>
-          </div>
-          <div>
-            <span className="text-accent font-semibold">💻  Scripting & Programming:</span>
-            <div className="ml-4">Python, Bash, Go, JavaScript, YAML</div>
-          </div>
-          <div>
-            <span className="text-accent font-semibold">🔒  Security:</span>
-            <div className="ml-4">Vault, SOPS, Trivy, Falco, OPA</div>
-          </div>
-          <div>
-            <span className="text-accent font-semibold">🗄️  Databases:</span>
-            <div className="ml-4">PostgreSQL, MySQL, MongoDB, Redis</div>
-          </div>
+          {skills.categories.map((category) => (
+            <div key={category.name}>
+              <span className={`${colorMap[category.color] || 'text-accent'} font-semibold`}>
+                {category.icon}  {category.name}:
+              </span>
+              <div className="ml-4">{category.skills.join(', ')}</div>
+            </div>
+          ))}
         </div>
         <div className="text-prompt-cyan mt-3">Type &apos;projects&apos; to see these skills in action!</div>
       </div>
@@ -116,29 +108,16 @@ export const COMMANDS: Record<string, Command> = {
         <div className="text-accent font-semibold">  Featured Projects</div>
         <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
         
-        <div className="mt-2 p-3 bg-bg-tertiary rounded border-l-3 border-accent">
-          <div className="text-accent font-semibold">🚀 K8s Cluster Automation</div>
-          <div className="text-text-secondary mt-1">Fully automated Kubernetes cluster provisioning with Terraform and Ansible. Includes GitOps workflow with ArgoCD.</div>
-          <div className="text-text-muted text-sm mt-2">Terraform • Kubernetes • ArgoCD • Helm • AWS</div>
-        </div>
-
-        <div className="p-3 bg-bg-tertiary rounded border-l-3 border-accent">
-          <div className="text-accent font-semibold">📊 Observability Platform</div>
-          <div className="text-text-secondary mt-1">Complete monitoring stack with custom dashboards, alerting, and log aggregation for microservices architecture.</div>
-          <div className="text-text-muted text-sm mt-2">Prometheus • Grafana • Loki • AlertManager</div>
-        </div>
-
-        <div className="p-3 bg-bg-tertiary rounded border-l-3 border-accent">
-          <div className="text-accent font-semibold">🔄 CI/CD Pipeline Framework</div>
-          <div className="text-text-secondary mt-1">Reusable pipeline templates for multi-language projects with security scanning and automated deployments.</div>
-          <div className="text-text-muted text-sm mt-2">GitHub Actions • Trivy • SonarQube • Docker</div>
-        </div>
-
-        <div className="p-3 bg-bg-tertiary rounded border-l-3 border-accent">
-          <div className="text-accent font-semibold">🔐 Secrets Management System</div>
-          <div className="text-text-secondary mt-1">Centralized secrets management with automatic rotation and audit logging across multiple environments.</div>
-          <div className="text-text-muted text-sm mt-2">HashiCorp Vault • Kubernetes • External Secrets</div>
-        </div>
+        {projects.projects.map((project, index) => (
+          <div 
+            key={project.title} 
+            className={`${index === 0 ? 'mt-2 ' : ''}p-3 bg-bg-tertiary rounded border-l-3 border-accent`}
+          >
+            <div className="text-accent font-semibold">{project.icon} {project.title}</div>
+            <div className="text-text-secondary mt-1">{project.description}</div>
+            <div className="text-text-muted text-sm mt-2">{project.technologies.join(' • ')}</div>
+          </div>
+        ))}
 
         <div className="text-prompt-cyan mt-3">Type &apos;experience&apos; to see my work history!</div>
       </div>
@@ -153,26 +132,17 @@ export const COMMANDS: Record<string, Command> = {
         <div className="text-accent font-semibold">  Work Experience</div>
         <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
 
-        <div className="mt-2 pl-3 border-l-2 border-accent">
-          <div className="font-semibold">Senior DevOps Engineer</div>
-          <div className="text-accent">@ TechCorp Inc.</div>
-          <div className="text-text-muted text-sm">2022 - Present</div>
-          <div className="text-text-secondary mt-1">Leading infrastructure automation initiatives, managing Kubernetes clusters, and implementing GitOps practices across the organization.</div>
-        </div>
-
-        <div className="pl-3 border-l-2 border-accent">
-          <div className="font-semibold">DevOps Engineer</div>
-          <div className="text-accent">@ CloudScale Solutions</div>
-          <div className="text-text-muted text-sm">2020 - 2022</div>
-          <div className="text-text-secondary mt-1">Built and maintained CI/CD pipelines, migrated legacy infrastructure to containerized workloads, and reduced deployment time by 70%.</div>
-        </div>
-
-        <div className="pl-3 border-l-2 border-accent">
-          <div className="font-semibold">Systems Administrator</div>
-          <div className="text-accent">@ StartupXYZ</div>
-          <div className="text-text-muted text-sm">2018 - 2020</div>
-          <div className="text-text-secondary mt-1">Managed Linux servers, implemented monitoring solutions, and began the journey into infrastructure automation.</div>
-        </div>
+        {experience.positions.map((position, index) => (
+          <div 
+            key={`${position.company}-${position.period}`} 
+            className={`${index === 0 ? 'mt-2 ' : ''}pl-3 border-l-2 border-accent`}
+          >
+            <div className="font-semibold">{position.title}</div>
+            <div className="text-accent">@ {position.company}</div>
+            <div className="text-text-muted text-sm">{position.period}</div>
+            <div className="text-text-secondary mt-1">{position.description}</div>
+          </div>
+        ))}
 
         <div className="text-prompt-cyan mt-3">Type &apos;contact&apos; to get in touch!</div>
       </div>
@@ -383,6 +353,9 @@ export function getWelcomeMessage(): React.ReactNode {
 export function getCommandNames(): string[] {
   return Object.keys(COMMANDS);
 }
+
+// Re-export skills data for the SkillsWidget
+export { skills as skillsData };
 
 export const MAIN_COMMANDS = ['help', 'about', 'skills', 'projects', 'experience', 'contact', 'clear'];
 export const EASTER_EGG_COMMANDS = ['whoami', 'neofetch'];
