@@ -28,6 +28,7 @@ An interactive terminal-style portfolio website where visitors can explore your 
 - **Tab Autocomplete** — Press Tab to autocomplete command names
 - **Keyboard Shortcuts** — `Ctrl+C` to cancel, `Ctrl+L` to clear
 - **Easter Eggs** — Try `neofetch`, `whoami`, `sudo`, or `rm -rf /`
+- **Version Footer** — Displays current version with link to GitHub releases
 
 ## Layout
 
@@ -39,6 +40,7 @@ The portfolio features a personalized header with your profile and a three-colum
 | **Commands Sidebar** | Quick-access buttons for all available commands |
 | **Terminal** | Interactive command-line interface for exploring content |
 | **Skills Widget** | Always-visible panel showing technical skills with cycling highlights |
+| **Footer** | Version badge linking to releases and source code link |
 
 ## Available Commands
 
@@ -67,7 +69,9 @@ The portfolio features a personalized header with your profile and a three-colum
 npm install
 ```
 
-2. Replace `public/avatar.svg` with your own profile picture (supports `.svg`, `.png`, `.jpg`)
+2. Modify the template with your data
+   - Replace `public/avatar.svg` with your own profile picture (supports `.svg`, `.png`, `.jpg`)
+   - Update the templates in the `data` directory with your own information
 
 3. Run the development server:
 
@@ -87,7 +91,8 @@ npm run dev
 ├── components/
 │   ├── Terminal.tsx      # Terminal emulator component
 │   ├── Sidebar.tsx       # Command sidebar with window chrome
-│   └── SkillsWidget.tsx  # Always-visible skills panel
+│   ├── SkillsWidget.tsx  # Always-visible skills panel
+│   └── Footer.tsx        # Version and repository links
 ├── data/
 │   ├── profile.json      # Personal info, links, and about content
 │   ├── skills.json       # Technical skills data
@@ -97,9 +102,12 @@ npm run dev
 │   └── screenshots/      # README screenshots
 ├── public/
 │   └── avatar.svg        # Your profile picture (default placeholder included)
-└── lib/
-    ├── commands.tsx      # Command definitions & rendering
-    └── types.ts          # TypeScript interfaces for data
+├── lib/
+│   ├── commands.tsx      # Command definitions & rendering
+│   ├── types.ts          # TypeScript interfaces for data
+│   └── version.ts        # Version and repository configuration
+└── .github/
+    └── release.yml       # Auto-generated release notes configuration
 ```
 
 ## Customization
@@ -112,6 +120,17 @@ All portfolio content is stored in JSON files in the `data/` directory:
 - **Experience** (`data/experience.json`): Update work history with positions, companies, and descriptions
 - **Avatar** (`public/avatar.svg`): Replace with your own profile picture (update path in profile.json if using different format)
 - **Styling** (`app/globals.css`): Customize colors, fonts, and theme
+- **Version** (`lib/version.ts`): Update version number and repository URL
+
+## Releases
+
+This project uses GitHub's automatically generated release notes. PRs are categorized based on labels:
+- `feature`, `enhancement` → 🚀 New Features
+- `bug`, `fix`, `bugfix` → 🐛 Bug Fixes
+- `ui`, `ux`, `design`, `styling` → 🎨 UI/UX Improvements
+- `documentation`, `docs` → 📚 Documentation
+- `chore`, `maintenance`, `refactor` → 🔧 Maintenance
+- `dependencies` → 📦 Dependencies
 
 ## License
 

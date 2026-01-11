@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Terminal from '@/components/Terminal';
 import Sidebar from '@/components/Sidebar';
 import SkillsWidget from '@/components/SkillsWidget';
+import Footer from '@/components/Footer';
 import profileData from '@/data/profile.json';
 import type { ProfileData } from '@/lib/types';
 
@@ -125,6 +126,9 @@ export default function Home() {
             <SkillsWidget />
           </div>
         </main>
+
+        {/* Footer */}
+        <Footer />
       </div>
     </div>
   );
