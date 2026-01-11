@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2a2a2a;
+  --bg-titlebar: #323232;
+  
+  --text-primary: #e0e0e0;
+  --text-secondary: #888888;
+  --text-muted: #666666;
+  
+  --accent: #e63946;
+  --accent-hover: #ff4d5a;
+  --accent-glow: rgba(230, 57, 70, 0.3);
+  
+  --prompt-green: #4ade80;
+  --prompt-cyan: #22d3ee;
+  --prompt-yellow: #facc15;
+  
+  --btn-close: #ff5f56;
+  --btn-minimize: #ffbd2e;
+  --btn-maximize: #27ca40;
+}
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-bg-titlebar: var(--bg-titlebar);
+  
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-glow: var(--accent-glow);
+  
+  --color-prompt-green: var(--prompt-green);
+  --color-prompt-cyan: var(--prompt-cyan);
+  --color-prompt-yellow: var(--prompt-yellow);
+  
+  --color-btn-close: var(--btn-close);
+  --color-btn-minimize: var(--btn-minimize);
+  --color-btn-maximize: var(--btn-maximize);
+  
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--text-primary);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Blinking cursor animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Link styles for terminal output */
+.output-link {
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 150ms ease;
+}
+
+.output-link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* Modern animated background */
+.modern-bg {
+  position: relative;
+  background: 
+    linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #0d0d0d 100%);
+  overflow: hidden;
+}
+
+.modern-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(230, 57, 70, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(230, 57, 70, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(230, 57, 70, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.modern-bg::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(230, 57, 70, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(230, 57, 70, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Animated floating orbs */
+@keyframes float-orb-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  25% { transform: translate(50px, -30px) scale(1.1); opacity: 0.8; }
+  50% { transform: translate(100px, 20px) scale(0.9); opacity: 0.5; }
+  75% { transform: translate(30px, 50px) scale(1.05); opacity: 0.7; }
+}
+
+@keyframes float-orb-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  33% { transform: translate(-60px, 40px) scale(1.2); opacity: 0.6; }
+  66% { transform: translate(-30px, -50px) scale(0.85); opacity: 0.3; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; filter: blur(80px); }
+  50% { opacity: 0.7; filter: blur(100px); }
+}
+
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(230, 57, 70, 0.3) 0%, transparent 70%);
+  animation: float-orb-1 20s ease-in-out infinite, pulse-glow 8s ease-in-out infinite;
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  bottom: -150px;
+  right: -150px;
+  background: radial-gradient(circle, rgba(230, 57, 70, 0.25) 0%, transparent 70%);
+  animation: float-orb-2 25s ease-in-out infinite, pulse-glow 10s ease-in-out infinite 2s;
+}
+
+.orb-3 {
+  width: 300px;
+  height: 300px;
+  top: 40%;
+  left: 60%;
+  background: radial-gradient(circle, rgba(230, 57, 70, 0.15) 0%, transparent 70%);
+  animation: float-orb-1 30s ease-in-out infinite reverse, pulse-glow 12s ease-in-out infinite 4s;
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Content wrapper to stay above background */
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+}
