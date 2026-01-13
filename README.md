@@ -83,6 +83,40 @@ npm run dev
 
 4. Open [http://localhost:3000](http://localhost:3000) to view the portfolio.
 
+## Deployment
+
+### Cloudflare Workers
+
+This project is configured for deployment to Cloudflare Workers using the OpenNext adapter.
+
+1. Login to Cloudflare (one-time setup):
+
+```bash
+npx wrangler login
+```
+
+2. Build and deploy:
+
+```bash
+npm run deploy
+```
+
+Your site will be available at `https://shell-portfolio.<your-subdomain>.workers.dev`.
+
+#### Available Deployment Commands
+
+| Command | Description |
+|---------|-------------|
+| `npm run build:worker` | Build the Next.js app for Cloudflare Workers |
+| `npm run preview` | Test the production build locally at `http://localhost:8787` |
+| `npm run deploy` | Build and deploy to Cloudflare Workers |
+
+### Vercel
+
+Alternatively, deploy to Vercel with one click:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/shell-portfolio)
+
 ## Project Structure
 
 ```
