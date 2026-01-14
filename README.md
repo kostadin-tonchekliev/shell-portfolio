@@ -107,8 +107,8 @@ Your site will be available at `https://shell-portfolio.<your-subdomain>.workers
 
 | Command | Description |
 |---------|-------------|
-| `npm run build:worker` | Build the Next.js app for Cloudflare Workers |
-| `npm run preview` | Test the production build locally at `http://localhost:8787` |
+| `npm run preview` | Build and test the production build locally at `http://localhost:8787` |
+| `npm run upload` | Build and upload to Cloudflare (without deploying to production) |
 | `npm run deploy` | Build and deploy to Cloudflare Workers |
 
 ### Vercel
@@ -162,10 +162,10 @@ All portfolio content is stored in JSON files in the `data/` directory:
 
 This project uses GitHub's automatically generated release notes. PRs are categorized based on labels:
 - `feature`, `enhancement` → 🚀 New Features
-- `bug`, `fix`, `bugfix` → 🐛 Bug Fixes
-- `ui`, `ux`, `design`, `styling` → 🎨 UI/UX Improvements
-- `documentation`, `docs` → 📚 Documentation
-- `chore`, `maintenance`, `refactor` → 🔧 Maintenance
+- `bugfix` → 🐛 Bug Fixes
+- `design` → 🎨 UI/UX Improvements
+- `docs` → 📚 Documentation
+- `maintenance`, `refactor` → 🔧 Maintenance
 - `dependencies` → 📦 Dependencies
 
 ## License

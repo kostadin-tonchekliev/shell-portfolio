@@ -1,5 +1,11 @@
-MacOS related files
+#MacOS related files
 .DS_Store
+
+#OpenNext related files
+.open-next/
+
+#Wrangler local dev state
+.wrangler/
 
 # Logs
 logs
