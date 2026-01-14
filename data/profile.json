@@ -19,5 +19,19 @@
       "Observability and monitoring solutions",
       "Security-first DevOps practices"
     ]
-  }
+  },
+  "education": [
+    {
+      "degree": "Master of Science in Computer Science",
+      "institution": "Stanford University",
+      "period": "2018 - 2020",
+      "description": "Specialized in distributed systems and cloud computing. Thesis on container orchestration optimization."
+    },
+    {
+      "degree": "Bachelor of Science in Software Engineering",
+      "institution": "MIT",
+      "period": "2014 - 2018",
+      "description": "Focus on systems programming and network infrastructure. Graduated with honors."
+    }
+  ]
 }

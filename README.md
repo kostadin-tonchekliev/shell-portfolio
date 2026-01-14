@@ -54,6 +54,7 @@ The portfolio features a personalized header with your profile and a three-colum
 | `skills` | View technical skills |
 | `projects` | Browse featured projects |
 | `experience` | View work history |
+| `education` | View education background |
 | `contact` | Get contact information |
 | `clear` | Clear the terminal |
 
@@ -152,9 +153,9 @@ Alternatively, deploy to Vercel with one click:
 
 All portfolio content is stored in JSON files in the `data/` directory:
 
-- **Profile** (`data/profile.json`): Your name, title, tagline, avatar path, email, social links, and about content
+- **Profile** (`data/profile.json`): Your name, title, tagline, avatar path, email, social links, about content, and education history
 - **Skills** (`data/skills.json`): Edit skill categories, icons, and individual skills
-- **Projects** (`data/projects.json`): Add or modify featured projects with descriptions and tech stacks
+- **Projects** (`data/projects.json`): Add or modify featured projects with descriptions, tech stacks, and project links
 - **Experience** (`data/experience.json`): Update work history with positions, companies, and descriptions
 - **Avatar** (`public/avatar.svg`): Replace with your own profile picture (update path in profile.json if using different format)
 - **Styling** (`app/globals.css`): Customize colors, fonts, and theme
