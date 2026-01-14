@@ -30,6 +30,7 @@ A demo of the website can be found here: [shell-portfolio-three.vercel.app](http
 - **Tab Autocomplete** — Press Tab to autocomplete command names
 - **Keyboard Shortcuts** — `Ctrl+C` to cancel, `Ctrl+L` to clear
 - **Easter Eggs** — Try `neofetch`, `whoami`, `sudo`, or `rm -rf /`
+- **Custom 404 Page** — Terminal-styled error page with ASCII art for non-existent routes
 - **Version Footer** — Displays current version with link to GitHub releases
 
 ## Layout
@@ -122,6 +123,7 @@ Alternatively, deploy to Vercel with one click:
 ```
 ├── app/
 │   ├── page.tsx          # Main page with profile header & three-panel layout
+│   ├── not-found.tsx     # Custom 404 error page
 │   ├── layout.tsx        # Root layout
 │   └── globals.css       # Global styles & theme
 ├── components/
