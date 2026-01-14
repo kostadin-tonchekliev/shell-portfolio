@@ -35,6 +35,7 @@ export const COMMANDS: Record<string, Command> = {
           <div><span className="text-accent">skills</span>      - View my technical skills</div>
           <div><span className="text-accent">projects</span>    - Browse my projects</div>
           <div><span className="text-accent">experience</span>  - View my work experience</div>
+          <div><span className="text-accent">education</span>   - View my education</div>
           <div><span className="text-accent">contact</span>     - Get my contact information</div>
           <div><span className="text-accent">clear</span>       - Clear the terminal</div>
         </div>
@@ -109,6 +110,17 @@ export const COMMANDS: Record<string, Command> = {
             <div className="text-accent font-semibold">{project.icon} {project.title}</div>
             <div className="text-text-secondary mt-1">{project.description}</div>
             <div className="text-text-muted text-sm mt-2">{project.technologies.join(' • ')}</div>
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 mt-3 px-3 py-1.5 text-xs font-medium bg-accent/10 text-accent border border-accent/30 rounded hover:bg-accent/20 hover:border-accent/50 transition-all duration-150"
+              >
+                <span>View Project</span>
+                <span>→</span>
+              </a>
+            )}
           </div>
         ))}
 
@@ -134,6 +146,31 @@ export const COMMANDS: Record<string, Command> = {
             <div className="text-accent">@ {position.company}</div>
             <div className="text-text-muted text-sm">{position.period}</div>
             <div className="text-text-secondary mt-1">{position.description}</div>
+          </div>
+        ))}
+
+        <div className="text-prompt-cyan mt-3">Type &apos;education&apos; to see my academic background!</div>
+      </div>
+    ),
+  },
+
+  education: {
+    description: 'View my education',
+    execute: () => (
+      <div className="space-y-3">
+        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+        <div className="text-accent font-semibold">  Education</div>
+        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+
+        {profile.education?.map((edu, index) => (
+          <div 
+            key={`${edu.institution}-${edu.period}`} 
+            className={`${index === 0 ? 'mt-2 ' : ''}pl-3 border-l-2 border-prompt-cyan`}
+          >
+            <div className="font-semibold">🎓 {edu.degree}</div>
+            <div className="text-prompt-cyan">@ {edu.institution}</div>
+            <div className="text-text-muted text-sm">{edu.period}</div>
+            <div className="text-text-secondary mt-1">{edu.description}</div>
           </div>
         ))}
 
@@ -350,5 +387,5 @@ export function getCommandNames(): string[] {
 // Re-export skills data for the SkillsWidget
 export { skills as skillsData };
 
-export const MAIN_COMMANDS = ['help', 'about', 'skills', 'projects', 'experience', 'contact', 'clear'];
+export const MAIN_COMMANDS = ['help', 'about', 'skills', 'projects', 'experience', 'education', 'contact', 'clear'];
 export const EASTER_EGG_COMMANDS = ['whoami', 'neofetch'];

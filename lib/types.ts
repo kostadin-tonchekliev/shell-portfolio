@@ -15,6 +15,7 @@ export interface Project {
   title: string;
   description: string;
   technologies: string[];
+  link?: string;
 }
 
 export interface ProjectsData {
@@ -45,6 +46,13 @@ export interface ProfileAbout {
   currentFocus: string[];
 }
 
+export interface Education {
+  degree: string;
+  institution: string;
+  period: string;
+  description: string;
+}
+
 export interface ProfileData {
   name: string;
   title: string;
@@ -53,4 +61,5 @@ export interface ProfileData {
   email: string;
   links: ProfileLinks;
   about: ProfileAbout;
+  education?: Education[];
 }
