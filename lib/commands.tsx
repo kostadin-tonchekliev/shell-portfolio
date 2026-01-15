@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState, useRef } from 'react';
 import skillsData from '@/data/skills.json';
 import projectsData from '@/data/projects.json';
 import experienceData from '@/data/experience.json';
@@ -13,6 +15,48 @@ const profile = profileData as ProfileData;
 export interface Command {
   description: string;
   execute: (args?: string[]) => React.ReactNode;
+}
+
+// Dynamic line component that scales based on container width
+function DynamicLine({ className = 'text-accent' }: { className?: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [lineLength, setLineLength] = useState(58); // Default fallback
+
+  useEffect(() => {
+    const calculateLength = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.offsetWidth;
+        // Each ━ character is approximately 8-10px wide in monospace font
+        // We use a slightly smaller estimate to ensure it fits
+        const charWidth = 9.6;
+        const calculatedLength = Math.floor(containerWidth / charWidth);
+        setLineLength(Math.max(20, calculatedLength)); // Minimum 20 chars
+      }
+    };
+
+    calculateLength();
+
+    // Recalculate on window resize
+    window.addEventListener('resize', calculateLength);
+    return () => window.removeEventListener('resize', calculateLength);
+  }, []);
+
+  return (
+    <div ref={containerRef} className={`${className} overflow-hidden`}>
+      {'━'.repeat(lineLength)}
+    </div>
+  );
+}
+
+// Section header component with dynamic lines
+function SectionHeader({ title }: { title: string }) {
+  return (
+    <>
+      <DynamicLine />
+      <div className="text-accent font-semibold">  {title}</div>
+      <DynamicLine />
+    </>
+  );
 }
 
 // Color mapping for Tailwind classes
@@ -50,9 +94,7 @@ export const COMMANDS: Record<string, Command> = {
     description: 'Learn about me',
     execute: () => (
       <div className="space-y-3">
-        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-        <div className="text-accent font-semibold">  About {profile.name}</div>
-        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+        <SectionHeader title={`About ${profile.name}`} />
         <div className="mt-2">{profile.about.intro}</div>
         <div>{profile.about.description}</div>
         <div className="mt-3">
@@ -76,9 +118,7 @@ export const COMMANDS: Record<string, Command> = {
     description: 'View my technical skills',
     execute: () => (
       <div className="space-y-3">
-        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-        <div className="text-accent font-semibold">  Technical Skills</div>
-        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+        <SectionHeader title="Technical Skills" />
         <div className="space-y-3 mt-2">
           {skills.categories.map((category) => (
             <div key={category.name}>
@@ -98,9 +138,7 @@ export const COMMANDS: Record<string, Command> = {
     description: 'Browse my projects',
     execute: () => (
       <div className="space-y-3">
-        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-        <div className="text-accent font-semibold">  Featured Projects</div>
-        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+        <SectionHeader title="Featured Projects" />
         
         {projects.projects.map((project, index) => (
           <div 
@@ -133,9 +171,7 @@ export const COMMANDS: Record<string, Command> = {
     description: 'View my work experience',
     execute: () => (
       <div className="space-y-3">
-        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-        <div className="text-accent font-semibold">  Work Experience</div>
-        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+        <SectionHeader title="Work Experience" />
 
         {experience.positions.map((position, index) => (
           <div 
@@ -158,9 +194,7 @@ export const COMMANDS: Record<string, Command> = {
     description: 'View my education',
     execute: () => (
       <div className="space-y-3">
-        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-        <div className="text-accent font-semibold">  Education</div>
-        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+        <SectionHeader title="Education" />
 
         {profile.education?.map((edu, index) => (
           <div 
@@ -183,9 +217,7 @@ export const COMMANDS: Record<string, Command> = {
     description: 'Get my contact information',
     execute: () => (
       <div className="space-y-3">
-        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-        <div className="text-accent font-semibold">  Contact Information</div>
-        <div className="text-accent">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
+        <SectionHeader title="Contact Information" />
         <div className="mt-2">
           Let&apos;s connect! I&apos;m always open to discussing new opportunities,
           interesting projects, or just chatting about DevOps.
