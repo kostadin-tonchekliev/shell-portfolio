@@ -34,9 +34,10 @@ export interface ExperienceData {
 }
 
 export interface ProfileLinks {
-  linkedin: string;
-  github: string;
-  twitter: string;
+  linkedin?: string;
+  github?: string;
+  twitter?: string;
+  website?: string;
 }
 
 export interface ProfileAbout {
@@ -58,7 +59,7 @@ export interface ProfileData {
   title: string;
   tagline: string;
   avatar: string;
-  email: string;
+  email?: string;
   links: ProfileLinks;
   about: ProfileAbout;
   education?: Education[];

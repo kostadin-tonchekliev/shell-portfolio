@@ -229,45 +229,45 @@ export default function Terminal({ externalCommand, onCommandExecuted }: Termina
   };
 
   return (
-    <div className="w-full h-[700px] bg-bg-secondary rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_40px_rgba(230,57,70,0.1)] border border-bg-tertiary flex flex-col">
+    <div className="w-full h-[400px] sm:h-[500px] md:h-[600px] xl:h-[700px] bg-bg-secondary rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_40px_rgba(230,57,70,0.1)] border border-bg-tertiary flex flex-col">
       {/* Title Bar */}
-      <div className="flex items-center justify-between px-4 py-3 bg-bg-titlebar border-b border-bg-tertiary select-none">
-        <div className="flex gap-2">
-          <span className="w-3 h-3 rounded-full bg-btn-close hover:brightness-125 transition-all cursor-pointer" />
-          <span className="w-3 h-3 rounded-full bg-btn-minimize hover:brightness-125 transition-all cursor-pointer" />
-          <span className="w-3 h-3 rounded-full bg-btn-maximize hover:brightness-125 transition-all cursor-pointer" />
+      <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 bg-bg-titlebar border-b border-bg-tertiary select-none">
+        <div className="flex gap-1.5 sm:gap-2">
+          <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-btn-close hover:brightness-125 transition-all cursor-pointer" />
+          <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-btn-minimize hover:brightness-125 transition-all cursor-pointer" />
+          <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-btn-maximize hover:brightness-125 transition-all cursor-pointer" />
         </div>
-        <div className="text-sm text-text-secondary font-medium">
+        <div className="text-xs sm:text-sm text-text-secondary font-medium truncate max-w-[150px] sm:max-w-none">
           visitor@portfolio — zsh
         </div>
-        <div className="w-[52px]" />
+        <div className="w-[40px] sm:w-[52px]" />
       </div>
 
       {/* Terminal Content */}
       <div 
         ref={contentRef}
-        className="flex-1 p-5 overflow-y-auto flex flex-col cursor-text"
+        className="flex-1 p-3 sm:p-4 md:p-5 overflow-y-auto flex flex-col cursor-text"
         onClick={handleContentClick}
       >
         {/* Output */}
-        <div className="flex-1 text-sm leading-relaxed whitespace-pre-wrap break-words">
+        <div className="flex-1 text-xs sm:text-sm leading-relaxed whitespace-pre-wrap break-words overflow-x-auto">
           {output.map((item) => (
             <div key={item.id} className="mb-1">
               {item.type === 'command' && (
-                <div className="flex items-center gap-2">
+                <div className="flex items-start sm:items-center gap-1 sm:gap-2 flex-wrap sm:flex-nowrap">
                   <Prompt />
-                  <span>{item.command}</span>
+                  <span className="break-all">{item.command}</span>
                 </div>
               )}
               {item.type === 'response' && (
-                <div className="mb-4">{item.content}</div>
+                <div className="mb-3 sm:mb-4">{item.content}</div>
               )}
             </div>
           ))}
         </div>
 
         {/* Input Line */}
-        <div className="flex items-center pt-2">
+        <div className="flex items-start sm:items-center pt-2 gap-1 sm:gap-0">
           <Prompt />
           <input
             ref={inputRef}
@@ -275,7 +275,7 @@ export default function Terminal({ externalCommand, onCommandExecuted }: Termina
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 bg-transparent border-none outline-none text-text-primary caret-accent ml-2"
+            className="flex-1 bg-transparent border-none outline-none text-text-primary caret-accent ml-1 sm:ml-2 text-xs sm:text-sm min-w-0"
             autoComplete="off"
             autoCapitalize="off"
             spellCheck={false}
@@ -288,7 +288,7 @@ export default function Terminal({ externalCommand, onCommandExecuted }: Termina
 
 function Prompt() {
   return (
-    <span className="flex-shrink-0">
+    <span className="flex-shrink-0 text-xs sm:text-sm">
       <span className="text-prompt-green font-semibold">visitor</span>
       <span className="text-text-secondary">@</span>
       <span className="text-prompt-cyan font-semibold">portfolio</span>

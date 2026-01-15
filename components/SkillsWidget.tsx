@@ -14,9 +14,14 @@ const colorVarMap: Record<string, string> = {
   'prompt-yellow': 'var(--prompt-yellow)',
 };
 
-export default function SkillsWidget() {
+interface SkillsWidgetProps {
+  compact?: boolean;
+}
+
+export default function SkillsWidget({ compact = false }: SkillsWidgetProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [uptime, setUptime] = useState('0:00:00');
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const categories = skills.categories;
 
@@ -45,6 +50,115 @@ export default function SkillsWidget() {
 
   const totalSkills = categories.reduce((acc, cat) => acc + cat.skills.length, 0);
 
+  // Compact mobile version
+  if (compact) {
+    return (
+      <div className="skills-widget w-full bg-bg-secondary rounded-xl overflow-hidden border border-bg-tertiary shadow-[0_10px_40px_rgba(0,0,0,0.4),0_0_20px_rgba(230,57,70,0.05)]">
+        {/* Title Bar - clickable to expand */}
+        <div 
+          className="flex items-center justify-between px-3 py-2 bg-bg-titlebar border-b border-bg-tertiary select-none cursor-pointer"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          <div className="flex gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-btn-close opacity-80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-btn-minimize opacity-80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-btn-maximize opacity-80" />
+          </div>
+          <div className="text-xs text-text-muted font-medium tracking-wide flex items-center gap-2">
+            <span>skills — htop</span>
+            <span className="text-accent font-mono">{totalSkills}</span>
+          </div>
+          <div className="w-[40px] flex justify-end">
+            <svg 
+              className={`w-4 h-4 text-text-muted transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Collapsed: Horizontal scroll of skill categories */}
+        {!isExpanded && (
+          <div className="p-3 overflow-x-auto">
+            <div className="flex gap-2">
+              {categories.map((category) => (
+                <div
+                  key={category.name}
+                  className="flex-shrink-0 px-3 py-2 rounded-lg border border-bg-tertiary/50 bg-bg-tertiary/20"
+                >
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <span className="text-xs">{category.icon}</span>
+                    <span 
+                      className="text-[10px] font-semibold uppercase tracking-wider"
+                      style={{ color: colorVarMap[category.color] || 'var(--accent)' }}
+                    >
+                      {category.shortName}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap gap-1 max-w-[150px]">
+                    {category.skills.slice(0, 3).map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-1.5 py-0.5 text-[9px] rounded bg-bg-tertiary/60 text-text-secondary border border-bg-tertiary"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                    {category.skills.length > 3 && (
+                      <span className="px-1.5 py-0.5 text-[9px] text-text-muted">
+                        +{category.skills.length - 3}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Expanded: Full grid view */}
+        {isExpanded && (
+          <div className="p-3 space-y-2 max-h-[300px] overflow-y-auto">
+            {categories.map((category, index) => (
+              <div
+                key={category.name}
+                className={`skill-category p-2.5 rounded-lg border transition-all duration-500 ${
+                  index === activeIndex
+                    ? 'border-accent/40 bg-accent/5'
+                    : 'border-bg-tertiary/50 bg-bg-tertiary/20'
+                }`}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-sm">{category.icon}</span>
+                  <span 
+                    className="text-xs font-semibold uppercase tracking-wider"
+                    style={{ color: colorVarMap[category.color] || 'var(--accent)' }}
+                  >
+                    {category.shortName}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="skill-tag px-2 py-0.5 text-[10px] rounded bg-bg-tertiary/60 text-text-secondary border border-bg-tertiary"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Full desktop version
   return (
     <div className="skills-widget w-full h-[700px] bg-bg-secondary rounded-xl overflow-hidden border border-bg-tertiary shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_40px_rgba(230,57,70,0.1)] flex flex-col">
       {/* Title Bar */}
