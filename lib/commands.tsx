@@ -223,22 +223,36 @@ export const COMMANDS: Record<string, Command> = {
           interesting projects, or just chatting about DevOps.
         </div>
         <div className="space-y-2 mt-3 ml-2">
-          <div>
-            <span className="text-accent">📧 Email:</span>    
-            <a href={`mailto:${profile.email}`} className="output-link ml-2">{profile.email}</a>
-          </div>
-          <div>
-            <span className="text-accent">💼 LinkedIn:</span> 
-            <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" className="output-link ml-2">{profile.links.linkedin.replace('https://', '')}</a>
-          </div>
-          <div>
-            <span className="text-accent">🐙 GitHub:</span>   
-            <a href={profile.links.github} target="_blank" rel="noopener noreferrer" className="output-link ml-2">{profile.links.github.replace('https://', '')}</a>
-          </div>
-          <div>
-            <span className="text-accent">🐦 Twitter:</span>  
-            <a href={profile.links.twitter} target="_blank" rel="noopener noreferrer" className="output-link ml-2">@{profile.links.twitter.split('/').pop()}</a>
-          </div>
+          {profile.email && (
+            <div>
+              <span className="text-accent">📧 Email:</span>    
+              <a href={`mailto:${profile.email}`} className="output-link ml-2">{profile.email}</a>
+            </div>
+          )}
+          {profile.links.linkedin && (
+            <div>
+              <span className="text-accent">💼 LinkedIn:</span> 
+              <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" className="output-link ml-2">{profile.links.linkedin.replace('https://', '')}</a>
+            </div>
+          )}
+          {profile.links.github && (
+            <div>
+              <span className="text-accent">🐙 GitHub:</span>   
+              <a href={profile.links.github} target="_blank" rel="noopener noreferrer" className="output-link ml-2">{profile.links.github.replace('https://', '')}</a>
+            </div>
+          )}
+          {profile.links.twitter && (
+            <div>
+              <span className="text-accent">🐦 Twitter:</span>  
+              <a href={profile.links.twitter} target="_blank" rel="noopener noreferrer" className="output-link ml-2">@{profile.links.twitter.split('/').pop()}</a>
+            </div>
+          )}
+          {profile.links.website && (
+            <div>
+              <span className="text-accent">🌐 Website:</span>  
+              <a href={profile.links.website} target="_blank" rel="noopener noreferrer" className="output-link ml-2">{profile.links.website.replace('https://', '')}</a>
+            </div>
+          )}
         </div>
         <div className="text-prompt-green mt-3">Looking forward to hearing from you! 🚀</div>
       </div>
