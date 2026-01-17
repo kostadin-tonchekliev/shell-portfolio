@@ -6,6 +6,7 @@ import Terminal from '@/components/Terminal';
 import Sidebar from '@/components/Sidebar';
 import SkillsWidget from '@/components/SkillsWidget';
 import Footer from '@/components/Footer';
+import ThemeToggle from '@/components/ThemeToggle';
 import profileData from '@/data/profile.json';
 import type { ProfileData } from '@/lib/types';
 
@@ -64,6 +65,7 @@ export default function Home() {
 
             {/* Quick Links */}
             <div className="flex gap-3 sm:gap-4 flex-shrink-0">
+              <ThemeToggle />
               {profile.links.github && (
                 <a
                   href={profile.links.github}

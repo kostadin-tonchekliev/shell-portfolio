@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-:root {
+/* Dark mode (default) */
+:root,
+[data-theme="dark"] {
   --bg-primary: #0d0d0d;
   --bg-secondary: #1a1a1a;
   --bg-tertiary: #2a2a2a;
@@ -21,6 +23,36 @@
   --btn-close: #ff5f56;
   --btn-minimize: #ffbd2e;
   --btn-maximize: #27ca40;
+  
+  --orb-opacity: 1;
+  --grid-opacity: 1;
+}
+
+/* Light mode */
+[data-theme="light"] {
+  --bg-primary: #d4d4d4;
+  --bg-secondary: #e5e5e5;
+  --bg-tertiary: #c4c4c4;
+  --bg-titlebar: #b8b8b8;
+  
+  --text-primary: #1a1a1a;
+  --text-secondary: #404040;
+  --text-muted: #525252;
+  
+  --accent: #c41c2d;
+  --accent-hover: #a31824;
+  --accent-glow: rgba(196, 28, 45, 0.25);
+  
+  --prompt-green: #15803d;
+  --prompt-cyan: #0e7490;
+  --prompt-yellow: #a16207;
+  
+  --btn-close: #dc2626;
+  --btn-minimize: #d97706;
+  --btn-maximize: #16a34a;
+  
+  --orb-opacity: 0.4;
+  --grid-opacity: 0.4;
 }
 
 @theme inline {
@@ -103,7 +135,7 @@ body {
 .modern-bg {
   position: relative;
   background: 
-    linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #0d0d0d 100%);
+    linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
   overflow: hidden;
 }
 
@@ -115,9 +147,10 @@ body {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 20%, rgba(230, 57, 70, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(230, 57, 70, 0.1) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(230, 57, 70, 0.05) 0%, transparent 60%);
+    radial-gradient(circle at 20% 20%, var(--accent-glow) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, var(--accent-glow) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, var(--accent-glow) 0%, transparent 60%);
+  opacity: var(--orb-opacity);
   pointer-events: none;
   z-index: 0;
 }
@@ -130,9 +163,10 @@ body {
   right: 0;
   bottom: 0;
   background-image: 
-    linear-gradient(rgba(230, 57, 70, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(230, 57, 70, 0.03) 1px, transparent 1px);
+    linear-gradient(var(--accent-glow) 1px, transparent 1px),
+    linear-gradient(90deg, var(--accent-glow) 1px, transparent 1px);
   background-size: 60px 60px;
+  opacity: calc(var(--grid-opacity) * 0.3);
   pointer-events: none;
   z-index: 0;
 }
@@ -179,7 +213,8 @@ body {
   height: 400px;
   top: -100px;
   left: -100px;
-  background: radial-gradient(circle, rgba(230, 57, 70, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  opacity: var(--orb-opacity);
   animation: float-orb-1 12s ease-in-out infinite, pulse-glow 5s ease-in-out infinite;
 }
 
@@ -188,7 +223,8 @@ body {
   height: 500px;
   bottom: -150px;
   right: -150px;
-  background: radial-gradient(circle, rgba(230, 57, 70, 0.25) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  opacity: calc(var(--orb-opacity) * 0.85);
   animation: float-orb-2 15s ease-in-out infinite, pulse-glow 6s ease-in-out infinite 1s;
 }
 
@@ -197,7 +233,8 @@ body {
   height: 300px;
   top: 40%;
   left: 60%;
-  background: radial-gradient(circle, rgba(230, 57, 70, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  opacity: calc(var(--orb-opacity) * 0.5);
   animation: float-orb-3 18s ease-in-out infinite, pulse-glow 7s ease-in-out infinite 2s;
 }
 
