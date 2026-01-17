@@ -229,7 +229,7 @@ export default function Terminal({ externalCommand, onCommandExecuted }: Termina
   };
 
   return (
-    <div className="w-full h-[400px] sm:h-[500px] md:h-[600px] xl:h-[700px] bg-bg-secondary rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_40px_rgba(230,57,70,0.1)] border border-bg-tertiary flex flex-col">
+    <div className="w-full h-[400px] sm:h-[500px] md:h-[600px] xl:h-[700px] bg-bg-secondary rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_40px_rgba(230,57,70,0.1)] border border-bg-tertiary flex flex-col transition-all duration-300 hover:shadow-[0_25px_70px_rgba(0,0,0,0.7),0_0_60px_rgba(230,57,70,0.2)] hover:-translate-y-1 hover:border-accent/50">
       {/* Title Bar */}
       <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 bg-bg-titlebar border-b border-bg-tertiary select-none">
         <div className="flex gap-1.5 sm:gap-2">

@@ -6,6 +6,7 @@ import projectsData from '@/data/projects.json';
 import experienceData from '@/data/experience.json';
 import profileData from '@/data/profile.json';
 import type { SkillsData, ProjectsData, ExperienceData, ProfileData } from './types';
+import { VERSION } from './version';
 
 const skills = skillsData as SkillsData;
 const projects = projectsData as ProjectsData;
@@ -294,7 +295,7 @@ export const COMMANDS: Record<string, Command> = {
         <div className="space-y-1 text-sm">
           <div><span className="text-accent font-semibold">visitor</span><span>@{profile.name.toLowerCase().replace(/\s+/g, '-')}</span></div>
           <div className="text-text-muted">------------------</div>
-          <div><span className="text-accent">OS:</span> Portfolio OS 1.0.0</div>
+          <div><span className="text-accent">OS:</span> Portfolio OS {VERSION}</div>
           <div><span className="text-accent">Host:</span> {profile.name}&apos;s Portfolio</div>
           <div><span className="text-accent">Kernel:</span> Next.js 2024</div>
           <div><span className="text-accent">Uptime:</span> Always online ☁️</div>

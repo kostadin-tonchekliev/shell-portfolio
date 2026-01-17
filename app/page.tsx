@@ -6,6 +6,9 @@ import Terminal from '@/components/Terminal';
 import Sidebar from '@/components/Sidebar';
 import SkillsWidget from '@/components/SkillsWidget';
 import Footer from '@/components/Footer';
+import ThemeToggle from '@/components/ThemeToggle';
+import LoadingScreen from '@/components/LoadingScreen';
+import ScrollToTop from '@/components/ScrollToTop';
 import profileData from '@/data/profile.json';
 import type { ProfileData } from '@/lib/types';
 
@@ -25,20 +28,23 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col modern-bg">
-      {/* Animated background orbs */}
-      <div className="orb orb-1" />
-      <div className="orb orb-2" />
-      <div className="orb orb-3" />
-      <div className="noise-overlay" />
+    <>
+      <LoadingScreen />
+      <ScrollToTop />
+      <div className="min-h-screen flex flex-col modern-bg">
+        {/* Animated background orbs */}
+        <div className="orb orb-1" />
+        <div className="orb orb-2" />
+        <div className="orb orb-3" />
+        <div className="noise-overlay" />
 
       {/* Content */}
       <div className="content-wrapper min-h-screen flex flex-col">
         {/* Banner */}
-        <header className="py-6 sm:py-8 md:py-10 px-4 sm:px-6 md:px-8 border-b border-bg-tertiary/50 backdrop-blur-sm bg-bg-secondary/30">
+        <header className="py-6 sm:py-8 md:py-10 px-4 sm:px-6 md:px-8 border-b border-bg-tertiary/50 backdrop-blur-sm bg-bg-secondary/30 animate-on-mount animate-fade-in">
           <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row items-center gap-4 sm:gap-6 md:gap-8">
             {/* Profile Picture */}
-            <div className="relative flex-shrink-0">
+            <div className="relative flex-shrink-0 animate-on-mount animate-fade-in-up animation-delay-100">
               <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-3 border-accent shadow-[0_0_30px_rgba(230,57,70,0.3)]">
                 <Image
                   src={profile.avatar}
@@ -53,7 +59,7 @@ export default function Home() {
             </div>
 
             {/* Profile Info */}
-            <div className="text-center md:text-left flex-1 min-w-0">
+            <div className="text-center md:text-left flex-1 min-w-0 animate-on-mount animate-fade-in-up animation-delay-200">
               <h1 className="text-xl sm:text-2xl md:text-4xl font-semibold tracking-tight mb-1 sm:mb-2 truncate">
                 <span className="text-accent">&gt;</span> {profile.name}
                 <span className="text-accent cursor-blink">_</span>
@@ -63,7 +69,8 @@ export default function Home() {
             </div>
 
             {/* Quick Links */}
-            <div className="flex gap-3 sm:gap-4 flex-shrink-0">
+            <div className="flex gap-3 sm:gap-4 flex-shrink-0 animate-on-mount animate-fade-in-up animation-delay-300">
+              <ThemeToggle />
               {profile.links.github && (
                 <a
                   href={profile.links.github}
@@ -134,11 +141,11 @@ export default function Home() {
         {/* Main Content */}
         <main className="flex-1 flex flex-col xl:flex-row xl:items-start gap-4 sm:gap-6 p-4 sm:p-6 max-w-[1800px] mx-auto w-full">
           {/* Sidebar - shows compact on mobile, full on desktop */}
-          <div className="xl:flex-1 xl:min-w-0 order-2 xl:order-1">
+          <div className="xl:flex-1 xl:min-w-0 order-2 xl:order-1 animate-on-mount animate-slide-in-left animation-delay-400">
             <Sidebar onCommandClick={handleCommandClick} />
           </div>
           {/* Terminal - primary focus, shows first on mobile */}
-          <section className="xl:flex-[2] xl:min-w-0 order-1 xl:order-2">
+          <section className="xl:flex-[2] xl:min-w-0 order-1 xl:order-2 animate-on-mount animate-fade-in-up animation-delay-300">
             <Terminal 
               key={commandKey}
               externalCommand={externalCommand} 
@@ -146,17 +153,20 @@ export default function Home() {
             />
           </section>
           {/* Skills Widget - compact on mobile, full on xl screens */}
-          <div className="xl:hidden order-3">
+          <div className="xl:hidden order-3 animate-on-mount animate-fade-in-up animation-delay-500">
             <SkillsWidget compact />
           </div>
-          <div className="hidden xl:block xl:flex-1 xl:min-w-0 order-3">
+          <div className="hidden xl:block xl:flex-1 xl:min-w-0 order-3 animate-on-mount animate-slide-in-right animation-delay-400">
             <SkillsWidget />
           </div>
         </main>
 
         {/* Footer */}
-        <Footer />
+        <div className="animate-on-mount animate-fade-in animation-delay-500">
+          <Footer />
+        </div>
       </div>
     </div>
+    </>
   );
 }
