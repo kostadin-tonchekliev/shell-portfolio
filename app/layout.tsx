@@ -36,7 +36,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={`${jetbrainsMono.variable} antialiased font-mono`}>
+      <body className={`${jetbrainsMono.variable} antialiased font-mono`} suppressHydrationWarning>
         <ThemeProvider>
           {children}
         </ThemeProvider>

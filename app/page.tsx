@@ -7,6 +7,7 @@ import Sidebar from '@/components/Sidebar';
 import SkillsWidget from '@/components/SkillsWidget';
 import Footer from '@/components/Footer';
 import ThemeToggle from '@/components/ThemeToggle';
+import LoadingScreen from '@/components/LoadingScreen';
 import profileData from '@/data/profile.json';
 import type { ProfileData } from '@/lib/types';
 
@@ -26,12 +27,14 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col modern-bg">
-      {/* Animated background orbs */}
-      <div className="orb orb-1" />
-      <div className="orb orb-2" />
-      <div className="orb orb-3" />
-      <div className="noise-overlay" />
+    <>
+      <LoadingScreen />
+      <div className="min-h-screen flex flex-col modern-bg">
+        {/* Animated background orbs */}
+        <div className="orb orb-1" />
+        <div className="orb orb-2" />
+        <div className="orb orb-3" />
+        <div className="noise-overlay" />
 
       {/* Content */}
       <div className="content-wrapper min-h-screen flex flex-col">
@@ -160,5 +163,6 @@ export default function Home() {
         <Footer />
       </div>
     </div>
+    </>
   );
 }
